@@ -1,0 +1,230 @@
+<div class="fixed inset-0 overflow-hidden pointer-events-none">
+    <div
+        class="absolute top-20 left-10 w-64 h-64 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 floating-element"
+    >
+    </div>
+    <div
+        class="absolute top-40 right-10 w-80 h-80 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 floating-element"
+        style="animation-delay: 2s;"
+    >
+    </div>
+    <div
+        class="absolute bottom-20 left-1/2 w-72 h-72 bg-indigo-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 floating-element"
+        style="animation-delay: 4s;"
+    >
+    </div>
+</div>
+<div class="relative z-10 w-full max-w-md mx-auto animate-fade-in">
+    <!-- Logo/Brand -->
+    <div class="text-center mb-8">
+        <a href="/" class="text-3xl font-bold text-white mb-2 cursor-pointer">
+            🚀 <span class="gradient-text2">FollowBoost</span>
+        </a>
+    </div>
+
+    <!-- Form Card -->
+    <div
+        class="form-glow bg-white/10 backdrop-blur-lg rounded-3xl p-8 shadow-[0_0_30px_rgba(236,72,153,0.3)] border border-white/20 animate-slide-up"
+    >
+        <!-- Progress Indicator -->
+        <div class="flex justify-center mb-6">
+            <div class="flex items-center space-x-2">
+                <div
+                    class="w-8 h-8 bg-gradient-to-r from-pink-500 to-purple-500 rounded-full flex items-center justify-center text-white text-sm font-bold"
+                >
+                    1
+                </div>
+                <div
+                    class="w-12 h-1 bg-gradient-to-r from-pink-500 to-purple-500 rounded-full"
+                >
+                </div>
+                <div
+                    class="w-8 h-8 bg-white/30 rounded-full flex items-center justify-center text-white text-sm font-bold"
+                >
+                    2
+                </div>
+            </div>
+        </div>
+
+        <!-- Header -->
+        <div class="text-center mb-8">
+            <h1 class="text-3xl font-bold text-white mb-3">
+                Casi listo para empezar
+            </h1>
+            <p class="text-lg text-gray-200 leading-relaxed">
+                Solo un paso más para que tu perfil crezca
+            </p>
+        </div>
+
+        <!-- Form -->
+        <form class="space-y-6" id="leadForm">
+            <!-- Name Field -->
+            <div class="space-y-2">
+                <label
+                    for="nombre"
+                    class="block text-white font-medium text-lg"
+                >
+                    ¿Cómo quieres que te llamemos?
+                </label>
+                <div class="relative">
+                    <input
+                        autocomplete="off"
+                        type="text"
+                        id="nombre"
+                        name="nombre"
+                        minlength="3"
+                        maxlength="20"
+                        required
+                        autocomplete="off"
+                        placeholder="Tu nombre o apodo favorito"
+                        class="transition-all duration-300 focus:-translate-y-0.5 focus:shadow-[0_10px_25px_rgba(139,92,246,0.2)] w-full px-6 py-4 bg-white/20 border border-white/30 rounded-2xl text-white placeholder-gray-300 text-lg focus:outline-none focus:border-pink-400 focus:bg-white/30"
+                    />
+                    <div
+                        class="absolute inset-y-0 right-0 flex items-center pr-6"
+                    >
+                        <span class="text-pink-300 text-xl">👤</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Email Field -->
+            <div class="space-y-2">
+                <label for="email" class="block text-white font-medium text-lg">
+                    Tu email seguro para recibir actualizaciones
+                </label>
+                <div class="relative">
+                    <input
+                        autocomplete="off"
+                        type="email"
+                        id="email"
+                        name="email"
+                        required
+                        autocomplete="off"
+                        placeholder="tu@email.com"
+                        class="transition-all duration-300 focus:-translate-y-0.5 focus:shadow-[0_10px_25px_rgba(139,92,246,0.2)] w-full px-6 py-4 bg-white/20 border border-white/30 rounded-2xl text-white placeholder-gray-300 text-lg focus:outline-none focus:border-pink-400 focus:bg-white/30"
+                    />
+                    <div
+                        class="absolute inset-y-0 right-0 flex items-center pr-6"
+                    >
+                        <span class="text-pink-300 text-xl">📧</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Privacy Message -->
+            <div
+                class="bg-green-500/20 border border-green-400/30 rounded-xl p-4 mt-6"
+            >
+                <div class="flex items-start space-x-3">
+                    <span class="text-green-300 text-xl flex-shrink-0">🔒</span>
+                    <p class="text-green-100 text-sm leading-relaxed">
+                        <strong>Tus datos están seguros con nosotros.</strong> Nunca
+                        compartiremos tu información.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <button
+                type="submit"
+                class="transition-all cursor-pointer duration-300 hover:-translate-y-0.5 hover:shadow-[0_15px_35px_rgba(236,72,153,0.4)] bg-pink-500 w-full bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 text-white font-bold text-xl py-5 px-8 rounded-2xl focus:outline-none focus:ring-4 focus:ring-pink-300/50 animate-pulse-slow"
+            >
+                <span class="flex items-center justify-center space-x-3">
+                    <span>🚀 Continuar y validar tarjeta</span>
+                </span>
+            </button>
+
+            <!-- Card Info -->
+            <div
+                class="bg-blue-500/20 border border-blue-400/30 rounded-xl p-4 mt-4"
+            >
+                <div class="flex items-start space-x-3">
+                    <span class="text-blue-300 text-lg flex-shrink-0">💳</span>
+                    <p class="text-blue-100 text-sm leading-relaxed">
+                        Solo te pediremos tu tarjeta para evitar abusos. <strong
+                            >No haremos cargos sin tu permiso.</strong
+                        >
+                    </p>
+                </div>
+            </div>
+        </form>
+
+        <!-- Trust Indicators -->
+        <div class="mt-8 pt-6 border-t border-white/20">
+            <div
+                class="flex justify-center items-center space-x-6 text-gray-300"
+            >
+                <div class="flex items-center space-x-2">
+                    <span class="text-green-400">✅</span>
+                    <span class="text-sm">SSL Seguro</span>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <span class="text-green-400">✅</span>
+                    <span class="text-sm">Sin Spam</span>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <span class="text-green-400">✅</span>
+                    <span class="text-sm">Datos Protegidos</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Trust Message -->
+    <div class="text-center mt-6">
+        <p class="text-gray-300 text-sm">
+            🔥 <strong>+50,000 usuarios</strong> ya han conseguido sus seguidores
+            gratis
+        </p>
+    </div>
+</div>
+
+<script is:inline>
+        // Form submission handler
+        document.getElementById('leadForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const nombre = document.getElementById('nombre').value;
+            const email = document.getElementById('email').value;
+            
+            // Simple validation
+            if (!nombre || !email) {
+                alert('Por favor completa todos los campos');
+                return;
+            }
+            
+            // Show loading state
+            const button = this.querySelector('button[type="submit"]');
+            const originalText = button.innerHTML;
+            button.innerHTML = '<span class="flex items-center justify-center space-x-2"><span class="animate-spin">⏳</span><span>Procesando...</span></span>';
+            button.disabled = true;
+            
+            // Simulate form processing
+            setTimeout(() => {
+                window.location.href = 'validate-card';
+                
+                // Reset button
+                button.innerHTML = originalText;
+                button.disabled = false;
+            }, 2000);
+        });
+
+        // Input animations
+        const inputs = document.querySelectorAll('input');
+        inputs.forEach(input => {
+            input.addEventListener('focus', function() {
+                this.parentElement.style.transform = 'scale(1.02)';
+            });
+            
+            input.addEventListener('blur', function() {
+                this.parentElement.style.transform = 'scale(1)';
+            });
+        });
+
+        // Add floating animation to form on load
+        window.addEventListener('load', function() {
+            const formCard = document.querySelector('.form-glow');
+            formCard.style.animation = 'float 8s ease-in-out infinite';
+        });
+</script>
