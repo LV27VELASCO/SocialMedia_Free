@@ -24,7 +24,7 @@
 
     <!-- Form Card -->
     <div
-        class="form-glow bg-white/10 backdrop-blur-lg rounded-3xl p-8 shadow-[0_0_30px_rgba(236,72,153,0.3)] border border-white/20 animate-slide-up"
+        class=" bg-white/10 backdrop-blur-lg rounded-3xl p-8 shadow-[0_0_30px_rgba(236,72,153,0.3)] border border-white/20 animate-slide-up"
     >
         <!-- Progress Indicator -->
         <div class="flex justify-center mb-6">
@@ -42,6 +42,15 @@
                     class="w-8 h-8 bg-white/30 rounded-full flex items-center justify-center text-white text-sm font-bold"
                 >
                     2
+                </div>
+                <div
+                    class="w-12 h-1 bg-gradient-to-r from-white/30 to-white/40 rounded-full"
+                >
+                </div>
+                <div
+                    class="w-8 h-8 bg-white/30 rounded-full flex items-center justify-center text-white text-sm font-bold"
+                >
+                    3
                 </div>
             </div>
         </div>
@@ -110,6 +119,116 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Red Social Selection -->
+            <div class="space-y-2">
+                <label
+                    for="redSocial"
+                    class="block text-white font-medium text-lg"
+                >
+                    ¿En qué red social quieres crecer?
+                </label>
+                <div class="relative">
+                    <select
+                        id="redSocial"
+                        name="redSocial"
+                        required
+                        class="transition-all duration-300 focus:-translate-y-0.5 focus:shadow-[0_10px_25px_rgba(139,92,246,0.2)] w-full px-6 py-4 bg-white/20 border border-white/30 rounded-2xl text-white text-lg focus:outline-none focus:border-pink-400 focus:bg-white/30 appearance-none"
+                    >
+                        <option value="" class="bg-gray-800"
+                            >Selecciona tu red social</option
+                        >
+                        <option value="instagram" class="bg-gray-800"
+                            >📸 Instagram</option
+                        >
+                        <option value="facebook" class="bg-gray-800"
+                            >👥 Facebook</option
+                        >
+                        <option value="tiktok" class="bg-gray-800"
+                            >🎵 TikTok</option
+                        >
+                    </select>
+                    <div
+                        class="absolute inset-y-0 right-0 flex items-center pr-6 pointer-events-none"
+                    >
+                        <span class="text-pink-300 text-xl">📱</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Selection -->
+            <div class="space-y-2">
+                <label
+                    for="accion"
+                    class="block text-white font-medium text-lg"
+                >
+                    ¿Qué quieres aumentar?
+                </label>
+                <div class="relative">
+                    <select
+                        id="accion"
+                        name="accion"
+                        required
+                        class="input-focus w-full px-6 py-4 bg-white/20 border border-white/30 rounded-2xl text-white text-lg focus:outline-none focus:border-pink-400 focus:bg-white/30 appearance-none"
+                    >
+                        <option value="" class="bg-gray-800"
+                            >Selecciona qué aumentar</option
+                        >
+                        <option value="seguidores" class="bg-gray-800"
+                            >👥 Seguidores</option
+                        >
+                        <option value="likes" class="bg-gray-800"
+                            >❤️ Likes</option
+                        >
+                        <option value="visualizaciones" class="bg-gray-800"
+                            >👁️ Visualizaciones</option
+                        >
+                    </select>
+                    <div
+                        class="absolute inset-y-0 right-0 flex items-center pr-6 pointer-events-none"
+                    >
+                        <span class="text-pink-300 text-xl">🎯</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- URL Input -->
+            <div class="space-y-2">
+                <label
+                    for="url"
+                    class="block text-white font-medium text-lg"
+                    id="urlLabel"
+                >
+                    URL de tu perfil o publicación
+                </label>
+                <div class="relative">
+                    <input
+                        type="url"
+                        id="url"
+                        name="url"
+                        required
+                        placeholder="Pega aquí la URL de tu perfil o publicación"
+                        class="transition-all duration-300 focus:-translate-y-0.5 focus:shadow-[0_10px_25px_rgba(139,92,246,0.2)] w-full px-6 py-4 bg-white/20 border border-white/30 rounded-2xl text-white placeholder-gray-300 text-lg focus:outline-none focus:border-pink-400 focus:bg-white/30"
+                    />
+                    <div
+                        class="absolute inset-y-0 right-0 flex items-center pr-6"
+                    >
+                        <span class="text-pink-300 text-xl" id="urlIcon"
+                            >🔗</span
+                        >
+                    </div>
+                </div>
+                <div
+                    class="bg-blue-500/20 border border-blue-400/30 rounded-xl p-3 mt-2"
+                >
+                    <p class="text-blue-100 text-sm" id="urlHelp">
+                        💡 Selecciona primero la red social y la acción para ver
+                        ejemplos de URL
+                    </p>
+                </div>
+            </div>
+
+            <p id="message" class="text-center text-sm mt-2"></p>
 
             <!-- Privacy Message -->
             <div
@@ -180,51 +299,116 @@
 </div>
 
 <script is:inline>
-        // Form submission handler
-        document.getElementById('leadForm').addEventListener('submit', function(e) {
+    // Form submission handler
+    document.getElementById("leadForm").addEventListener("submit", function (e) {
             e.preventDefault();
-            
+
             // Get form data
-            const nombre = document.getElementById('nombre').value;
-            const email = document.getElementById('email').value;
-            
+            const nombre = document.getElementById("nombre").value;
+            const email = document.getElementById("email").value;
+
             // Simple validation
             if (!nombre || !email) {
-                alert('Por favor completa todos los campos');
+                alert("Por favor completa todos los campos");
                 return;
             }
+
             
+            // Get new form data
+            const redSocial = document.getElementById('redSocial').value;
+            const accion = document.getElementById('accion').value;
+            const url = document.getElementById('url').value;
+
+            // Enhanced validation
+            if (!redSocial) {
+                alert('Por favor selecciona una red social');
+                return;
+            }
+
+            if (!accion) {
+                alert('Por favor selecciona qué quieres aumentar');
+                return;
+            }
+
+            if (!url) {
+                alert('Por favor ingresa la URL de tu perfil o publicación');
+                return;
+            }
+
+            // URL format validation
+            const urlLower = url.toLowerCase();
+            let validUrl = false;
+
+            switch (redSocial) {
+                case 'instagram':
+                    validUrl = urlLower.includes('instagram.com');
+                    break;
+                case 'facebook':
+                    validUrl = urlLower.includes('facebook.com');
+                    break;
+                case 'tiktok':
+                    validUrl = urlLower.includes('tiktok.com');
+                    break;
+            }
+
+            const messageErr = document.getElementById('message');
+
+            if (!validUrl) {
+                messageErr.textContent = `Por favor ingresa una URL válida de ${redSocial.charAt(0).toUpperCase() + redSocial.slice(1)}`;
+                messageErr.className = "text-red-300 text-center text-sm bg-red-500/20 p-4 rounded-xl border border-red-400/30";
+                return;
+            }
+
             // Show loading state
             const button = this.querySelector('button[type="submit"]');
             const originalText = button.innerHTML;
-            button.innerHTML = '<span class="flex items-center justify-center space-x-2"><span class="animate-spin">⏳</span><span>Procesando...</span></span>';
+            button.innerHTML =
+                '<span class="flex items-center justify-center space-x-2"><span class="animate-spin">⏳</span><span>Procesando...</span></span>';
             button.disabled = true;
-            
+
+            // Crear JSON con los datos del formulario
+            const formData = {
+                nombre: nombre,
+                email: email,
+                redSocial: redSocial,
+                accion: accion,
+                url: url,
+                fecha: new Date().toISOString()
+            };
+
+            // Get form data
+            document.getElementById("nombre").value ='';
+            document.getElementById("email").value ='';
+            document.getElementById('redSocial').value ='';
+            document.getElementById('accion').value ='';
+            document.getElementById('url').value ='';
+
+            localStorage.setItem("Register", JSON.stringify(formData));
+
             // Simulate form processing
             setTimeout(() => {
-                window.location.href = 'validate-card';
-                
+                window.location.href = "validate-card";
+
                 // Reset button
                 button.innerHTML = originalText;
                 button.disabled = false;
             }, 2000);
         });
 
-        // Input animations
-        const inputs = document.querySelectorAll('input');
-        inputs.forEach(input => {
-            input.addEventListener('focus', function() {
-                this.parentElement.style.transform = 'scale(1.02)';
-            });
-            
-            input.addEventListener('blur', function() {
-                this.parentElement.style.transform = 'scale(1)';
-            });
+    // Input animations
+    const inputs = document.querySelectorAll("input");
+    inputs.forEach((input) => {
+        input.addEventListener("focus", function () {
+            this.parentElement.style.transform = "scale(1.02)";
         });
 
-        // Add floating animation to form on load
-        window.addEventListener('load', function() {
-            const formCard = document.querySelector('.form-glow');
-            formCard.style.animation = 'float 8s ease-in-out infinite';
+        input.addEventListener("blur", function () {
+            this.parentElement.style.transform = "scale(1)";
         });
+    });
+
+    // Add floating animation to form on load
+    window.addEventListener("load", function () {
+       // localStorage.removeItem("Register")
+    });
 </script>
