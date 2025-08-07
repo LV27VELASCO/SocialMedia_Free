@@ -1,0 +1,877 @@
+<!-- Animated Background Elements -->
+<div class="fixed inset-0 overflow-hidden pointer-events-none">
+    <div
+        class="absolute top-20 left-10 w-64 h-64 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl opacity-10 floating-element"
+    >
+    </div>
+    <div
+        class="absolute top-40 right-10 w-80 h-80 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-10 floating-element"
+        style="animation-delay: 2s;"
+    >
+    </div>
+    <div
+        class="absolute bottom-20 left-1/2 w-72 h-72 bg-indigo-500 rounded-full mix-blend-multiply filter blur-xl opacity-10 floating-element"
+        style="animation-delay: 4s;"
+    >
+    </div>
+</div>
+
+<!-- Header -->
+<header
+    class="relative z-50 bg-black/20 backdrop-blur-lg border-b border-white/10"
+>
+    <div class="container mx-auto px-4 sm:px-6 py-4">
+        <div class="flex items-center justify-between">
+            <!-- Mobile Menu Button -->
+            <button
+                id="mobileMenuBtn"
+                class="lg:hidden p-2 text-white hover:bg-white hover:bg-opacity-10 rounded-full transition-colors"
+            >
+                <span class="text-2xl">☰</span>
+            </button>
+
+            <!-- Logo -->
+            <div class="text-xl sm:text-2xl font-bold text-white">
+                🚀 <span class="gradient-text">FollowBoost</span>
+            </div>
+
+            <!-- User Menu -->
+            <div class="flex items-center space-x-2 sm:space-x-4">
+                <!-- Notifications -->
+                <button
+                    class="relative p-2 text-white hover:bg-white hover:bg-opacity-10 rounded-full transition-colors"
+                >
+                    <span class="text-xl sm:text-2xl">🔔</span>
+                    <span
+                        class="absolute -top-1 -right-1 w-4 h-4 sm:w-5 sm:h-5 bg-red-500 rounded-full text-xs text-white flex items-center justify-center"
+                        >3</span
+                    >
+                </button>
+
+                <!-- User Profile -->
+                <div class="user-profile flex items-center space-x-2 sm:space-x-3 bg-white/10 rounded-full px-2 sm:px-4 py-2">
+                    <div
+                        class="w-6 h-6 sm:w-8 sm:h-8 bg-gradient-to-r from-pink-500 to-purple-500 rounded-full flex items-center justify-center text-white font-bold text-sm"
+                    >
+                        U
+                    </div>
+                    <span class="hidden sm:block text-white font-medium"
+                        >Usuario Demo</span
+                    >
+                    <button onclick="toggleUserMenu()" class="text-white cursor-pointer">
+                        <span class="text-sm sm:text-lg">▼</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Main Layout -->
+<div class="flex min-h-screen">
+    <!-- Mobile Overlay -->
+    <div
+        id="mobileOverlay"
+        class="hidden fixed inset-0 bg-black/50 z-40 lg:hidden"
+    >
+    </div>
+
+    <!-- Sidebar -->
+    <aside
+        id="sidebar"
+        class="fixed lg:relative inset-y-0 left-0 z-50 w-64 bg-black/20 backdrop-blur-lg border-r border-white/10 p-4 sm:p-6 transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out"
+    >
+        <nav class="space-y-2">
+            <a
+                href="#"
+                class="nav-item active flex items-center space-x-3 px-3 sm:px-4 py-3 rounded-xl text-white text-sm sm:text-base"
+                onclick="showSection('dashboard')"
+            >
+                <span class="text-lg sm:text-xl">📊</span>
+                <span>Dashboard</span>
+            </a>
+            <a
+                href="#"
+                class="nav-item flex items-center space-x-3 px-3 sm:px-4 py-3 rounded-xl text-white text-sm sm:text-base"
+                onclick="showSection('orders')"
+            >
+                <span class="text-lg sm:text-xl">📦</span>
+                <span>Mis Pedidos</span>
+            </a>
+            <a
+                href="#"
+                class="nav-item flex items-center space-x-3 px-3 sm:px-4 py-3 rounded-xl text-white text-sm sm:text-base"
+                onclick="showSection('subscription')"
+            >
+                <span class="text-lg sm:text-xl">💳</span>
+                <span>Suscripción</span>
+            </a>
+        </nav>
+
+        <!-- Logout Button -->
+        <div
+            class="mt-6 sm:mt-8 pt-6 sm:pt-8 border-t border-white/20"
+        >
+            <button
+                onclick="logout()"
+                class="w-full flex items-center space-x-3 px-3 sm:px-4 py-3 rounded-xl text-red-300 hover:bg-red-500 hover:bg-opacity-20 transition-colors text-sm sm:text-base"
+            >
+                <span class="text-lg sm:text-xl">🚪</span>
+                <span>Cerrar Sesión</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 p-4 sm:p-6 lg:ml-0 overflow-y-auto">
+        <!-- Dashboard Section -->
+        <div id="dashboard-section" class="section">
+            <!-- Welcome Message -->
+            <div class="mb-6 sm:mb-8 animate-fade-in">
+                <h1
+                    class="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-2"
+                >
+                    ¡Hola, <span class="gradient-text">Usuario Demo</span>! 👋
+                </h1>
+                <p class="text-lg sm:text-xl text-gray-300">
+                    Aquí tienes un resumen de tu actividad y crecimiento
+                </p>
+            </div>
+
+            <!-- Stats Cards -->
+            <div
+                class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 sm:gap-6 mb-6 sm:mb-8"
+            >
+                <!-- Total Followers -->
+                <div
+                    class="stat-card card-hover rounded-2xl p-4 sm:p-6 animate-slide-up"
+                >
+                    <div class="flex items-center justify-between mb-3 sm:mb-4">
+                        <div class="text-2xl sm:text-3xl">👥</div>
+                        <div
+                            class="text-green-400 text-xs sm:text-sm font-semibold"
+                        >
+                            +12.5%
+                        </div>
+                    </div>
+                    <div
+                        class="text-xl sm:text-2xl font-bold text-white mb-1"
+                        id="totalFollowers"
+                    >
+                        15,847
+                    </div>
+                    <div class="text-gray-400 text-xs sm:text-sm">
+                        Total Seguidores
+                    </div>
+                </div>
+
+                <!-- Total Likes -->
+                <div
+                    class="stat-card card-hover rounded-2xl p-4 sm:p-6 animate-slide-up"
+                    style="animation-delay: 0.1s;"
+                >
+                    <div class="flex items-center justify-between mb-3 sm:mb-4">
+                        <div class="text-2xl sm:text-3xl">❤️</div>
+                        <div
+                            class="text-green-400 text-xs sm:text-sm font-semibold"
+                        >
+                            +8.3%
+                        </div>
+                    </div>
+                    <div
+                        class="text-xl sm:text-2xl font-bold text-white mb-1"
+                        id="totalLikes"
+                    >
+                        89,234
+                    </div>
+                    <div class="text-gray-400 text-xs sm:text-sm">
+                        Total Likes
+                    </div>
+                </div>
+
+                <!-- Total Views -->
+                <div
+                    class="stat-card card-hover rounded-2xl p-4 sm:p-6 animate-slide-up"
+                    style="animation-delay: 0.2s;"
+                >
+                    <div class="flex items-center justify-between mb-3 sm:mb-4">
+                        <div class="text-2xl sm:text-3xl">👁️</div>
+                        <div
+                            class="text-green-400 text-xs sm:text-sm font-semibold"
+                        >
+                            +15.7%
+                        </div>
+                    </div>
+                    <div
+                        class="text-xl sm:text-2xl font-bold text-white mb-1"
+                        id="totalViews"
+                    >
+                        234,567
+                    </div>
+                    <div class="text-gray-400 text-xs sm:text-sm">
+                        Total Visualizaciones
+                    </div>
+                </div>
+
+                <!-- Active Orders -->
+                <div
+                    class="stat-card card-hover rounded-2xl p-4 sm:p-6 animate-slide-up"
+                    style="animation-delay: 0.3s;"
+                >
+                    <div class="flex items-center justify-between mb-3 sm:mb-4">
+                        <div class="text-2xl sm:text-3xl">⚡</div>
+                        <div
+                            class="text-blue-400 text-xs sm:text-sm font-semibold"
+                        >
+                            En proceso
+                        </div>
+                    </div>
+                    <div class="text-xl sm:text-2xl font-bold text-white mb-1">
+                        2
+                    </div>
+                    <div class="text-gray-400 text-xs sm:text-sm">
+                        Pedidos Activos
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Activity & Quick Actions -->
+            <div
+                class="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 mb-6 sm:mb-8"
+            >
+                <!-- Recent Activity -->
+                <div class="stat-card rounded-2xl p-6">
+                    <h3
+                        class="text-xl font-bold text-white mb-6 flex items-center"
+                    >
+                        <span class="text-2xl mr-3">📋</span>
+                        Actividad Reciente
+                    </h3>
+                    <div class="space-y-4">
+                        <div
+                            class="flex items-center space-x-4 p-3 bg-green-500/20 rounded-xl"
+                        >
+                            <div
+                                class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center text-white"
+                            >
+                                ✓
+                            </div>
+                            <div class="flex-1">
+                                <div class="text-white font-medium">
+                                    Pedido completado
+                                </div>
+                                <div class="text-green-300 text-sm">
+                                    +500 seguidores en Instagram
+                                </div>
+                                <div class="text-gray-400 text-xs">
+                                    Hace 2 horas
+                                </div>
+                            </div>
+                        </div>
+
+                        <div
+                            class="flex items-center space-x-4 p-3 bg-blue-500/20 rounded-xl"
+                        >
+                            <div
+                                class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center text-white animate-pulse"
+                            >
+                                ⚡
+                            </div>
+                            <div class="flex-1">
+                                <div class="text-white font-medium">
+                                    Pedido en proceso
+                                </div>
+                                <div class="text-blue-300 text-sm">
+                                    +500 likes en TikTok
+                                </div>
+                                <div class="text-gray-400 text-xs">
+                                    Iniciado hace 30 min
+                                </div>
+                            </div>
+                        </div>
+
+                        <div
+                            class="flex items-center space-x-4 p-3 bg-purple-500/20 rounded-xl"
+                        >
+                            <div
+                                class="w-10 h-10 bg-purple-500 rounded-full flex items-center justify-center text-white"
+                            >
+                                💳
+                            </div>
+                            <div class="flex-1">
+                                <div class="text-white font-medium">
+                                    Pago procesado
+                                </div>
+                                <div class="text-purple-300 text-sm">
+                                    Suscripción mensual renovada
+                                </div>
+                                <div class="text-gray-400 text-xs">
+                                    Hace 1 día
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="stat-card rounded-2xl p-6">
+                    <h3
+                        class="text-xl font-bold text-white mb-6 flex items-center"
+                    >
+                        <span class="text-2xl mr-3">🚀</span>
+                        Acciones Rápidas
+                    </h3>
+                    <div class="grid grid-cols-2 gap-3 sm:gap-4">
+                        <button
+                            onclick="newOrder()"
+                            class="card-hover cursor-pointer bg-gradient-to-r from-pink-500 to-purple-500/50 border border-pink-400/30 rounded-xl p-3 sm:p-4 text-center"
+                        >
+                            <div class="text-2xl sm:text-3xl mb-1 sm:mb-2">
+                                ➕
+                            </div>
+                            <div
+                                class="text-white font-medium text-xs sm:text-sm"
+                            >
+                                Nuevo Pedido
+                            </div>
+                        </button>
+
+                        <button
+                            onclick="viewAnalytics()"
+                            class="card-hover cursor-pointer bg-gradient-to-r from-amber-600 to-amber-500/50 border border-blue-400/30 rounded-xl p-3 sm:p-4 text-center"
+                        >
+                            <div class="text-2xl sm:text-3xl mb-1 sm:mb-2">
+                                📦
+                            </div>
+                            <div
+                                class="text-white font-medium text-xs sm:text-sm"
+                            >
+                                Mis Pedidos
+                            </div>
+                        </button>
+
+                        <button
+                            onclick="manageSubscription()"
+                            class="card-hover cursor-pointer bg-gradient-to-r from-green-500 to-teal-500/50 border border-green-400/30 rounded-xl p-3 sm:p-4 text-center"
+                        >
+                            <div class="text-2xl sm:text-3xl mb-1 sm:mb-2">
+                                💳
+                            </div>
+                            <div
+                                class="text-white font-medium text-xs sm:text-sm"
+                            >
+                                Suscripción
+                            </div>
+                        </button>
+
+                        <button
+                            onclick="contactSupport()"
+                            class="card-hover cursor-pointer bg-gradient-to-r from-red-600 to-red-400/50 border border-yellow-400/30 rounded-xl p-3 sm:p-4 text-center"
+                        >
+                            <div class="text-2xl sm:text-3xl mb-1 sm:mb-2">
+                                🚪
+                            </div>
+                            <div
+                                class="text-white font-medium text-xs sm:text-sm"
+                            >
+                                 Cerrar Sesión
+                            </div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Growth Chart -->
+            <div class="stat-card rounded-2xl p-6 mb-8">
+                <h3 class="text-xl font-bold text-white mb-6 flex items-center">
+                    <span class="text-2xl mr-3">📈</span>
+                    Crecimiento de Seguidores (Últimos 7 días)
+                </h3>
+                <div
+                    class="h-48 sm:h-64 flex items-end justify-between space-x-1 sm:space-x-2 px-2"
+                >
+                    <div class="flex flex-col items-center">
+                        <div
+                            class="w-6 sm:w-8 bg-gradient-to-t from-pink-500 to-purple-500 rounded-t mb-2"
+                            style="height: 40px; sm:height: 60px;"
+                        >
+                        </div>
+                        <span class="text-gray-400 text-xs">Lun</span>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div
+                            class="w-6 sm:w-8 bg-gradient-to-t from-pink-500 to-purple-500 rounded-t mb-2"
+                            style="height: 53.333333333333336px; sm:height: 80px;"
+                        >
+                        </div>
+                        <span class="text-gray-400 text-xs">Mar</span>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div
+                            class="w-6 sm:w-8 bg-gradient-to-t from-pink-500 to-purple-500 rounded-t mb-2"
+                            style="height: 80px; sm:height: 120px;"
+                        >
+                        </div>
+                        <span class="text-gray-400 text-xs">Mié</span>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div
+                            class="w-6 sm:w-8 bg-gradient-to-t from-pink-500 to-purple-500 rounded-t mb-2"
+                            style="height: 66.66666666666667px; sm:height: 100px;"
+                        >
+                        </div>
+                        <span class="text-gray-400 text-xs">Jue</span>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div
+                            class="w-6 sm:w-8 bg-gradient-to-t from-pink-500 to-purple-500 rounded-t mb-2"
+                            style="height: 100px; sm:height: 150px;"
+                        >
+                        </div>
+                        <span class="text-gray-400 text-xs">Vie</span>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div
+                            class="w-6 sm:w-8 bg-gradient-to-t from-pink-500 to-purple-500 rounded-t mb-2"
+                            style="height: 60px; sm:height: 90px;"
+                        >
+                        </div>
+                        <span class="text-gray-400 text-xs">Sáb</span>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div
+                            class="w-6 sm:w-8 bg-gradient-to-t from-pink-500 to-purple-500 rounded-t mb-2"
+                            style="height: 73.33333333333333px; sm:height: 110px;"
+                        >
+                        </div>
+                        <span class="text-gray-400 text-xs">Dom</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Orders Section -->
+        <div id="orders-section" class="section hidden">
+            <div class="mb-8">
+                <h1 class="text-4xl font-bold text-white mb-2">
+                    Mis <span class="gradient-text">Pedidos</span>
+                </h1>
+                <p class="text-xl text-gray-300">
+                    Historial completo de todos tus pedidos
+                </p>
+            </div>
+
+            <!-- Orders Table -->
+            <div class="stat-card rounded-2xl p-6">
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead>
+                            <tr class="border-b border-white/20">
+                                <th
+                                    class="text-left text-white font-semibold py-4"
+                                    >Fecha</th
+                                >
+                                <th
+                                    class="text-left text-white font-semibold py-4"
+                                    >Servicio</th
+                                >
+                                <th
+                                    class="text-left text-white font-semibold py-4"
+                                    >Red Social</th
+                                >
+                                <th
+                                    class="text-left text-white font-semibold py-4"
+                                    >Cantidad</th
+                                >
+                                <th
+                                    class="text-left text-white font-semibold py-4"
+                                    >Estado</th
+                                >
+                                <th
+                                    class="text-left text-white font-semibold py-4"
+                                    >Acciones</th
+                                >
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b border-white/10">
+                                <td class="py-4 text-gray-300">2024-01-15</td>
+                                <td class="py-4 text-white">Seguidores</td>
+                                <td class="py-4 text-white">📸 Instagram</td>
+                                <td class="py-4 text-white">500</td>
+                                <td class="py-4">
+                                    <span
+                                        class="px-3 py-1 bg-green-500/20 text-green-300 rounded-full text-sm"
+                                    >
+                                        ✅ Completado
+                                    </span>
+                                </td>
+                                <td class="py-4">
+                                    <button
+                                        class="text-blue-300 hover:text-blue-200"
+                                        >Ver detalles</button
+                                    >
+                                </td>
+                            </tr>
+                            <tr class="border-b border-white/10">
+                                <td class="py-4 text-gray-300">2024-01-14</td>
+                                <td class="py-4 text-white">Likes</td>
+                                <td class="py-4 text-white">🎵 TikTok</td>
+                                <td class="py-4 text-white">500</td>
+                                <td class="py-4">
+                                    <span
+                                        class="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-sm animate-pulse"
+                                    >
+                                        ⚡ En proceso
+                                    </span>
+                                </td>
+                                <td class="py-4">
+                                    <button
+                                        class="text-blue-300 hover:text-blue-200"
+                                        >Ver progreso</button
+                                    >
+                                </td>
+                            </tr>
+                            <tr class="border-b border-white/10">
+                                <td class="py-4 text-gray-300">2024-01-12</td>
+                                <td class="py-4 text-white">Visualizaciones</td>
+                                <td class="py-4 text-white">👥 Facebook</td>
+                                <td class="py-4 text-white">2,500</td>
+                                <td class="py-4">
+                                    <span
+                                        class="px-3 py-1 bg-green-500/20 text-green-300 rounded-full text-sm"
+                                    >
+                                        ✅ Completado
+                                    </span>
+                                </td>
+                                <td class="py-4">
+                                    <button
+                                        class="text-blue-300 hover:text-blue-200"
+                                        >Ver detalles</button
+                                    >
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Subscription Section -->
+        <div id="subscription-section" class="section hidden">
+            <div class="mb-8">
+                <h1 class="text-4xl font-bold text-white mb-2">
+                    Mi <span class="gradient-text">Suscripción</span>
+                </h1>
+                <p class="text-xl text-gray-300">
+                    Gestiona tu plan y facturación
+                </p>
+            </div>
+
+            <!-- Current Plan -->
+            <div class="stat-card rounded-2xl p-6 mb-8">
+                <div class="flex items-center justify-between mb-6">
+                    <h3 class="text-2xl font-bold text-white">Plan Actual</h3>
+                    <span
+                        class="px-4 py-2 bg-green-500/20 text-green-300 rounded-full font-semibold"
+                    >
+                        ✅ Activo
+                    </span>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <div class="text-4xl font-bold text-white mb-2">
+                            €20<span class="text-xl text-gray-400">/mes</span>
+                        </div>
+                        <div class="text-gray-300 mb-4">Plan Premium</div>
+                        <ul class="space-y-2 text-gray-300">
+                            <li class="flex items-center space-x-2">
+                                <span class="text-green-400">✓</span>
+                                <span>Seguidores ilimitados</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <span class="text-green-400">✓</span>
+                                <span>Likes y visualizaciones</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <span class="text-green-400">✓</span>
+                                <span>Soporte prioritario 24/7</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <span class="text-green-400">✓</span>
+                                <span>Estadísticas avanzadas</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <div class="space-y-4">
+                            <div class="flex justify-between">
+                                <span class="text-gray-300">Próximo cobro:</span
+                                >
+                                <span class="text-white font-semibold"
+                                    >15 Feb 2024</span
+                                >
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-300"
+                                    >Método de pago:</span
+                                >
+                                <span class="text-white font-semibold"
+                                    >•••• 4242</span
+                                >
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-300">Estado:</span>
+                                <span class="text-green-300 font-semibold"
+                                    >Activo</span
+                                >
+                            </div>
+                        </div>
+
+                        <div class="mt-6 space-y-3">
+                            <button
+                                class="w-full px-4 py-3 bg-gradient-to-r from-pink-500 to-purple-500 text-white font-semibold rounded-xl hover:scale-105 transform transition-all duration-300"
+                            >
+                                Actualizar método de pago
+                            </button>
+                            <button
+                                onclick="cancelSubscription()"
+                                class="w-full px-4 py-3 bg-red-500/20 text-red-300 font-semibold rounded-xl hover:bg-opacity-30 transition-colors"
+                            >
+                                Cancelar suscripción
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Billing History -->
+            <div class="stat-card rounded-2xl p-6">
+                <h3 class="text-xl font-bold text-white mb-6">
+                    Historial de Facturación
+                </h3>
+                <div class="space-y-4">
+                    <div
+                        class="flex items-center justify-between p-4 bg-white/5 rounded-xl"
+                    >
+                        <div>
+                            <div class="text-white font-medium">
+                                Suscripción Premium
+                            </div>
+                            <div class="text-gray-400 text-sm">15 Ene 2024</div>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-white font-semibold">€20.00</div>
+                            <button
+                                class="text-blue-300 text-sm hover:text-blue-200"
+                                >Descargar</button
+                            >
+                        </div>
+                    </div>
+
+                    <div
+                        class="flex items-center justify-between p-4 bg-white/5 rounded-xl"
+                    >
+                        <div>
+                            <div class="text-white font-medium">
+                                Validación de tarjeta
+                            </div>
+                            <div class="text-gray-400 text-sm">01 Ene 2024</div>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-green-300 font-semibold">
+                                €1.00 (Reembolsado)
+                            </div>
+                            <button
+                                class="text-blue-300 text-sm hover:text-blue-200"
+                                >Descargar</button
+                            >
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<!-- User Menu Dropdown -->
+<div
+    id="userMenu"
+    class="hidden fixed top-16 right-6 bg-black/50 backdrop-blur-lg rounded-2xl p-4 z-50 border border-white/20"
+>
+    <div class="space-y-2">
+        <a
+            href="#"
+            onclick="logout()"
+            class="block px-4 py-2 text-red-300 hover:bg-red-500 hover:bg-opacity-20 rounded-xl transition-colors"
+        >
+            🚪 Cerrar Sesión
+        </a>
+    </div>
+</div>
+
+<!-- JavaScript -->
+<script is:inline>
+    // Navigation
+    function showSection(sectionName) {
+        // Hide all sections
+        document.querySelectorAll(".section").forEach((section) => {
+            section.classList.add("hidden");
+        });
+
+        // Show selected section
+        document
+            .getElementById(sectionName + "-section")
+            .classList.remove("hidden");
+
+        // Update active nav item
+        document.querySelectorAll(".nav-item").forEach((item) => {
+            item.classList.remove("active");
+        });
+        event.target.closest(".nav-item").classList.add("active");
+    }
+
+    // Toggle user menu
+    function toggleUserMenu() {
+        const menu = document.getElementById("userMenu");
+        menu.classList.toggle("hidden");
+    }
+
+    // Close user menu when clicking outside
+    document.addEventListener("click", function (e) {
+        const menu = document.getElementById("userMenu");
+        const userProfile = e.target.closest(".user-profile");
+
+        if (!menu.contains(e.target) && !userProfile) {
+            menu.classList.add("hidden");
+        }
+    });
+
+    // Quick actions
+    function newOrder() {
+        alert("Redirigiendo al formulario de nuevo pedido...");
+        // window.location.href = 'formulario.html';
+    }
+
+    function viewAnalytics() {
+        showSection("analytics");
+    }
+
+    function manageSubscription() {
+        showSection("subscription");
+    }
+
+    function contactSupport() {
+        alert("Abriendo chat de soporte...");
+    }
+
+    function cancelSubscription() {
+        if (
+            confirm(
+                "¿Estás seguro de que quieres cancelar tu suscripción? Perderás acceso a todas las funciones premium.",
+            )
+        ) {
+            alert(
+                "Suscripción cancelada. Seguirás teniendo acceso hasta el final del período actual.",
+            );
+        }
+    }
+
+    function logout() {
+        if (confirm("¿Estás seguro de que quieres cerrar sesión?")) {
+            alert("Cerrando sesión...");
+            // window.location.href = 'login.html';
+        }
+    }
+
+    // Animate numbers on load
+    function animateNumbers() {
+        const followers = document.getElementById("totalFollowers");
+        const likes = document.getElementById("totalLikes");
+        const views = document.getElementById("totalViews");
+
+        animateValue(followers, 0, 15847, 2000);
+        animateValue(likes, 0, 89234, 2000);
+        animateValue(views, 0, 234567, 2000);
+    }
+
+    function animateValue(element, start, end, duration) {
+        let startTimestamp = null;
+        const step = (timestamp) => {
+            if (!startTimestamp) startTimestamp = timestamp;
+            const progress = Math.min(
+                (timestamp - startTimestamp) / duration,
+                1,
+            );
+            const value = Math.floor(progress * (end - start) + start);
+            element.textContent = value.toLocaleString();
+            if (progress < 1) {
+                window.requestAnimationFrame(step);
+            }
+        };
+        window.requestAnimationFrame(step);
+    }
+
+    // Initialize dashboard
+    document.addEventListener("DOMContentLoaded", function () {
+        setTimeout(animateNumbers, 500);
+
+        // Add entrance animations
+        const cards = document.querySelectorAll(".stat-card");
+        cards.forEach((card, index) => {
+            card.style.animationDelay = `${index * 0.1}s`;
+            card.classList.add("animate-slide-up");
+        });
+    });
+
+    // Simulate real-time updates
+    setInterval(() => {
+        // Update notification count randomly
+        const notificationBadge = document.querySelector(
+            ".absolute.-top-1.-right-1",
+        );
+        const currentCount = parseInt(notificationBadge.textContent);
+        if (Math.random() > 0.8) {
+            notificationBadge.textContent = currentCount + 1;
+            notificationBadge.classList.add("animate-bounce-gentle");
+            setTimeout(() => {
+                notificationBadge.classList.remove("animate-bounce-gentle");
+            }, 2000);
+        }
+    }, 10000);
+
+    // Mobile menu functionality
+    const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+    const sidebar = document.getElementById("sidebar");
+    const mobileOverlay = document.getElementById("mobileOverlay");
+
+    mobileMenuBtn.addEventListener("click", function () {
+        sidebar.classList.toggle("-translate-x-full");
+        mobileOverlay.classList.toggle("hidden");
+    });
+
+    mobileOverlay.addEventListener("click", function () {
+        sidebar.classList.add("-translate-x-full");
+        mobileOverlay.classList.add("hidden");
+    });
+
+    // Close mobile menu when clicking nav items
+    document.querySelectorAll(".nav-item").forEach((item) => {
+        item.addEventListener("click", function () {
+            if (window.innerWidth < 1024) {
+                sidebar.classList.add("-translate-x-full");
+                mobileOverlay.classList.add("hidden");
+            }
+        });
+    });
+
+    // Handle window resize
+    window.addEventListener("resize", function () {
+        if (window.innerWidth >= 1024) {
+            sidebar.classList.remove("-translate-x-full");
+            mobileOverlay.classList.add("hidden");
+        }
+    });
+</script>

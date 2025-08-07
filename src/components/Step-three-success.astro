@@ -136,7 +136,7 @@
                             <div class="text-sm text-gray-300">Cantidad</div>
                             <div class="text-2xl font-bold text-green-300"
                                 id="quantity">
-                                1,000 seguidores
+                                500 seguidores
                             </div>
                             <div class="text-xs text-gray-300">Semanales x 1 mes</div>
                         </div>
@@ -312,19 +312,15 @@
                 <ul class="space-y-2 text-gray-300 text-sm">
                     <li class="flex items-center space-x-2">
                         <span class="text-blue-400">1.</span>
-                        <span>Recibirás email de confirmación</span>
+                        <span>Recibirás email con tus credenciales</span>
                     </li>
                     <li class="flex items-center space-x-2">
                         <span class="text-blue-400">2.</span>
-                        <span>Notificaciones de progreso</span>
+                        <span>Acceso a panel de usuario</span>
                     </li>
                     <li class="flex items-center space-x-2">
                         <span class="text-blue-400">3.</span>
-                        <span>Confirmación de entrega</span>
-                    </li>
-                    <li class="flex items-center space-x-2">
-                        <span class="text-blue-400">4.</span>
-                        <span>Acceso a panel de usuario</span>
+                        <span>Podrás ver tus ordenes y más!</span>
                     </li>
                 </ul>
             </div>
@@ -336,24 +332,17 @@
         <div
             class="bg-gradient-to-r from-purple-500 to-pink-500/20 backdrop-blur-lg rounded-2xl p-6 border border-purple-400/30"
         >
-            <div class="text-3xl mb-4">💬</div>
-            <h3 class="text-xl font-bold text-white mb-4">¿Necesitas ayuda?</h3>
+            <div class="text-3xl mb-4">😊</div>
+            <h3 class="text-xl font-bold text-white mb-4">¿Estas listo?</h3>
             <p class="text-gray-300 mb-6">
-                Nuestro equipo de soporte está disponible 24/7 para ayudarte
+                Inicia sesión y accede al panel de usuario ahora!
             </p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
                 <a
-                    href="mailto:soporte@followboost.com"
+                    href="/login"
                     class="px-6 py-3 bg-blue-500 text-white font-semibold rounded-full hover:bg-blue-600 transition-colors"
                 >
-                    📧 Email Soporte
-                </a>
-                <a
-                    href="https://wa.me/34600000000"
-                    target="_blank"
-                    class="px-6 py-3 bg-green-500 text-white font-semibold rounded-full hover:bg-green-600 transition-colors"
-                >
-                    📱 WhatsApp
+                    🔐 Iniciar sesión
                 </a>
             </div>
         </div>
@@ -494,27 +483,19 @@ setTimeout(updateProgress, 1000);
 
     const serviceType= {
         likes:{icon:'❤️', text:'Likes'},
-        seguidores:{icon:'👥', text:'Seguidores'},
-        visualizaciones:{icon:'👁️', text:'Visualizaciones'}
+        followers:{icon:'👥', text:'Seguidores'},
+        views:{icon:'👁️', text:'Visualizaciones'}
     }
 
     const formData = JSON.parse(localStorage.getItem("Register"));
 
-    const userData = {
-        socialNetwork: "📸 Instagram",
-        serviceType: "👥 Seguidores",
-        serviceIcon: "👥",
-        targetUrl: "https://instagram.com/tu_usuario",
-        quantity: "1,000 seguidores",
-        estimatedTime: "5-15 minutos",
-    };
 
     // Update UI with user data
     document.getElementById("socialNetwork").textContent = socialNetwork[formData.redSocial];
     document.getElementById("serviceType").textContent = serviceType[formData.accion].icon + ' ' + serviceType[formData.accion].text;
     document.getElementById("serviceIcon").textContent = serviceType[formData.accion].icon;
     document.getElementById("targetUrl").textContent = formData.url;
-    document.getElementById("quantity").textContent = '1,000' + ' ' + serviceType[formData.accion].text;
+    document.getElementById("quantity").textContent = '500' + ' ' + serviceType[formData.accion].text;
     document.getElementById("estimatedTime").textContent = '10-20 minutos';
 
     // Add some interactive effects

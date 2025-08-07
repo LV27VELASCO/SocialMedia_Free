@@ -7,7 +7,7 @@ html {
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
@@ -20,18 +20,8 @@ html {
   border-radius: 10px;
 }
 
+/* Gradient texts */
 .gradient-text {
-  background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57);
-  background-size: 300% 300%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: gradient-shift 3s ease infinite;
-}
-
-
-
-.gradient-text2 {
   background: linear-gradient(45deg, #ec4899, #8b5cf6, #06b6d4);
   background-size: 200% 200%;
   -webkit-background-clip: text;
@@ -40,61 +30,45 @@ html {
   animation: gradient-shift 3s ease infinite;
 }
 
-@keyframes gradient-shift {
-
-  0%,
-  100% {
-    background-position: 0% 50%;
-  }
-
-  50% {
-    background-position: 100% 50%;
-  }
+.gradient-text2 {
+  background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-shift 3s ease infinite;
 }
 
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
 
+/* Floating elements */
 .floating-element {
-  animation: float 6s ease-in-out infinite;
+  animation: float-gentle 8s ease-in-out infinite;
 }
 
 @keyframes float {
-
-  0%,
-  100% {
-    transform: translateY(0px) rotate(0deg);
-  }
-
-  50% {
-    transform: translateY(-10px) rotate(2deg);
-  }
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(2deg); }
 }
 
-/* Pulse lento */
+/* Animations */
 @keyframes pulse {
-
-  0%,
-  100% {
-    opacity: 1;
-  }
-
-  50% {
-    opacity: 0.5;
-  }
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
 }
 
 .animate-pulse-slow {
   animation: pulse 3s infinite;
 }
 
-/* Bounce suave */
 @keyframes bounce {
-
-  0%,
-  100% {
+  0%, 100% {
     transform: translateY(0);
     animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
   }
-
   50% {
     transform: translateY(-10px);
     animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
@@ -105,53 +79,28 @@ html {
   animation: bounce 2s infinite;
 }
 
-/* Fade in */
 @keyframes fadeIn {
-  0% {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
 
 .animate-fade-in {
   animation: fadeIn 0.8s ease-out forwards;
 }
 
-/* Slide up */
 @keyframes slideUp {
-  0% {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  0% { opacity: 0; transform: translateY(30px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
 
 .animate-slide-up {
   animation: slideUp 0.6s ease-out forwards;
 }
 
-/* Card flip */
 @keyframes cardFlip {
-  0% {
-    transform: rotateY(0deg);
-  }
-
-  50% {
-    transform: rotateY(90deg);
-  }
-
-  100% {
-    transform: rotateY(0deg);
-  }
+  0% { transform: rotateY(0deg); }
+  50% { transform: rotateY(90deg); }
+  100% { transform: rotateY(0deg); }
 }
 
 .animate-card-flip {
@@ -160,18 +109,26 @@ html {
   backface-visibility: hidden;
 }
 
-/* Contenedor con perspectiva para la animación 3D */
-.flip-container {
-  perspective: 1000px;
+@keyframes successPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
 }
 
-
-.content-glow {
-  box-shadow: 0 0 30px rgba(236, 72, 153, 0.1);
+.success-animation {
+  animation: successPulse 2s ease-in-out infinite;
 }
 
+@keyframes notificationPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
 
-.section-hover {
+.notification-badge {
+  animation: notificationPulse 2s ease-in-out infinite;
+}
+
+/* Hover effects */
+.section-hover, .back-button, .card-hover, .button-hover, .input-focus, .link-hover, .password-toggle, .nav-item {
   transition: all 0.3s ease;
 }
 
@@ -180,27 +137,14 @@ html {
   background-color: rgba(255, 255, 255, 0.05);
 }
 
-.back-button {
-  transition: all 0.3s ease;
-}
-
 .back-button:hover {
   transform: translateX(-5px);
   box-shadow: 0 10px 25px rgba(139, 92, 246, 0.3);
 }
 
-
-.card-hover {
-  transition: all 0.3s ease;
-}
-
 .card-hover:hover {
   transform: translateY(-5px) scale(1.02);
   box-shadow: 0 15px 35px rgba(139, 92, 246, 0.3);
-}
-
-.button-hover {
-  transition: all 0.3s ease;
 }
 
 .button-hover:hover {
@@ -208,31 +152,49 @@ html {
   box-shadow: 0 15px 35px rgba(236, 72, 153, 0.4);
 }
 
-.card-hover {
-  transition: all 0.3s ease;
+.input-focus:focus {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(139, 92, 246, 0.2);
 }
 
-.card-hover:hover {
-  transform: translateY(-5px) scale(1.02);
-  box-shadow: 0 15px 35px rgba(139, 92, 246, 0.3);
+.link-hover:hover {
+  transform: translateX(5px);
 }
 
-.success-animation {
-  animation: successPulse 2s ease-in-out infinite;
+.password-toggle:hover {
+  transform: scale(1.1);
 }
 
-@keyframes successPulse {
-
-  0%,
-  100% {
-    transform: scale(1);
-  }
-
-  50% {
-    transform: scale(1.1);
-  }
+.nav-item:hover {
+  transform: translateX(5px);
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
+.nav-item.active {
+  background-color: rgba(236, 72, 153, 0.2);
+  border-left: 4px solid #ec4899;
+}
+
+/* Cards and content */
+.content-glow {
+  box-shadow: 0 0 30px rgba(236, 72, 153, 0.1);
+}
+
+.card-glow {
+  box-shadow: 0 0 20px rgba(236, 72, 153, 0.1);
+}
+
+.flip-container {
+  perspective: 1000px;
+}
+
+.stat-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Progress elements */
 .progress-container {
   background: rgba(255, 255, 255, 0.1);
   border-radius: 10px;
@@ -246,18 +208,12 @@ html {
   animation: progress-bar 4s ease-in-out infinite;
 }
 
-.notification-badge {
-  animation: notificationPulse 2s ease-in-out infinite;
+.progress-ring {
+  transform: rotate(-90deg);
 }
 
-@keyframes notificationPulse {
-
-  0%,
-  100% {
-    opacity: 1;
-  }
-
-  50% {
-    opacity: 0.7;
-  }
+.progress-ring-circle {
+  stroke-dasharray: 251.2;
+  stroke-dashoffset: 251.2;
+  transition: stroke-dashoffset 2s ease-in-out;
 }

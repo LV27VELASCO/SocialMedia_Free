@@ -59,6 +59,7 @@ import { environment } from "../environments/environment";
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ 
         paymentMethodId: paymentMethod.id,
+        name:dataRegister.nombre,
         email:dataRegister.email,
         socialMedia:dataRegister.redSocial,
         url:dataRegister.url,
