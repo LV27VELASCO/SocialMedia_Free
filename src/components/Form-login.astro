@@ -21,7 +21,7 @@
     <!-- Logo/Brand -->
     <div class="text-center mb-8">
         <div class="text-4xl font-bold text-white mb-4">
-            🚀 <span class="gradient-text">FollowBoost</span>
+            🚀 <span class="gradient-text">WeeklySocial</span>
         </div>
         <p class="text-gray-300 text-lg">Accede a tu panel de control</p>
     </div>
@@ -48,16 +48,16 @@
                     for="usuario"
                     class="block text-white font-medium text-lg"
                 >
-                    Usuario o Email
+                    Correo
                 </label>
                 <div class="relative">
                     <input
-                        type="text"
+                        type="email"
                         id="usuario"
                         name="usuario"
                         required
                         autocomplete="off"
-                        placeholder="tu@email.com o tu_usuario"
+                        placeholder="johndoe@example.com"
                         class="input-focus w-full px-6 py-4 bg-white/20 border border-white/30 rounded-2xl text-white placeholder-gray-300 text-lg focus:outline-none focus:border-pink-400 focus:bg-opacity-30"
                     />
                     <div
@@ -87,7 +87,7 @@
                         class="input-focus w-full px-6 py-4 pr-16 bg-white/20 border border-white/30 rounded-2xl text-white placeholder-gray-300 text-lg focus:outline-none focus:border-pink-400 focus:bg-opacity-30"
                     />
                     <div
-                        class="absolute inset-y-0 right-0 flex items-center pr-6 space-x-2 cursor-pointer"
+                        class="absolute cursor-pointer inset-y-0 right-0 flex items-center pr-6 space-x-2"
                     >
                         <span
                             class="password-toggle text-pink-300 text-xl"
@@ -126,7 +126,7 @@
             <!-- Login Button -->
             <button
                 type="submit"
-                class="button-hover cursor-pointer w-full bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 text-white font-bold text-xl py-5 px-8 rounded-2xl focus:outline-none focus:ring-4 focus:ring-pink-300 focus:ring-opacity-50 animate-pulse-slow"
+                class="button-hover w-full bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 text-white font-bold text-xl py-5 px-8 rounded-2xl focus:outline-none focus:ring-4 focus:ring-pink-300 focus:ring-opacity-50 animate-pulse-slow"
                 id="loginButton"
             >
                 <span class="flex items-center justify-center space-x-3">
@@ -166,17 +166,10 @@
             <h3 class="text-white font-semibold mb-3">¿Necesitas ayuda?</h3>
             <div class="flex flex-col sm:flex-row gap-3 justify-center">
                 <a
-                    href="mailto:soporte@followboost.com"
+                    href="mailto:soporte@weeklysocial.com"
                     class="link-hover text-blue-300 hover:text-blue-200 text-sm"
                 >
-                    📧 soporte@followboost.com
-                </a>
-                <a
-                    href="https://wa.me/34600000000"
-                    target="_blank"
-                    class="link-hover text-green-300 hover:text-green-200 text-sm"
-                >
-                    📱 WhatsApp Soporte
+                    📧 soporte@weeklysocial.com
                 </a>
             </div>
         </div>
@@ -184,6 +177,7 @@
 </div>
 
 <!-- Forgot Password Modal -->
+<!-- Se deja hidden -->
 <div
     id="forgotPasswordModal"
     class="hidden fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50"
@@ -197,7 +191,7 @@
                 Recuperar Contraseña
             </h2>
             <p class="text-gray-300">
-                Te enviaremos un enlace para restablecer tu contraseña
+                Te enviaremos un correo con tus credenciales
             </p>
         </div>
 
@@ -210,23 +204,28 @@
                 <input
                     type="email"
                     id="resetEmail"
+                    autocomplete="off"
                     required
                     placeholder="tu@email.com"
                     class="w-full px-4 py-3 bg-white/20 border border-white/30 rounded-xl text-white placeholder-gray-300 focus:outline-none focus:border-pink-400"
                 />
             </div>
 
+            <p id="message3" class="text-center text-sm mt-2"></p>
+
             <div class="flex gap-3">
                 <button
                     type="button"
                     onclick="closeForgotPassword()"
-                    class="flex-1 cursor-pointer px-4 py-3 bg-gray-500/50 text-white rounded-xl hover:bg-opacity-70 transition-colors"
+                    id="cancelReset"
+                    class="flex-1 px-4 py-3 bg-gray-500/50 text-white rounded-xl hover:bg-opacity-70 transition-colors"
                 >
                     Cancelar
                 </button>
                 <button
-                    type="submit"
-                    class="flex-1 cursor-pointer px-4 py-3 bg-gradient-to-r from-pink-500 to-purple-500 text-white rounded-xl hover:scale-105 transform transition-all duration-300"
+                    id="btnResetPw"
+                    type="button"
+                    class="flex-1 px-4 py-3 bg-gradient-to-r from-pink-500 to-purple-500 text-white rounded-xl hover:scale-105 transform transition-all duration-300"
                 >
                     Enviar
                 </button>
@@ -235,111 +234,25 @@
     </div>
 </div>
 
+<script type="module" src="/src/scripts/login.js"></script>
 <!-- JavaScript -->
 <script is:inline>
-
-    const usuarioInput = document.getElementById("usuario");
     const passwordInput = document.getElementById("password");
-    const emailRegex = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
 
-    // Login form submission
-    document
-        .getElementById("loginForm")
-        .addEventListener("submit", async function (e) {
-            e.preventDefault();
+    // Toggle password visibility
+    function togglePassword() {
+        const passwordInput = document.getElementById("password");
+        const toggleIcon = document.getElementById("passwordToggle");
 
-            const email = usuarioInput.value.trim();
-            const password = passwordInput.value.trim();
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            toggleIcon.textContent = "🙈";
+        } else {
+            passwordInput.type = "password";
+            toggleIcon.textContent = "👁️";
+        }
+    }
 
-            // Basic validation
-            if (email.length === 0 || password.length === 0) {
-                showError("Por favor completa todos los campos");
-                return;
-            }
-
-            if(!emailRegex.test(email)){
-                showError("Formato de email inválido");
-                return;
-            }
-
-            if(password < 6){
-                showError("La contraseña debe tener minimo 6 carácteres");
-                return;
-            }
-
-            // Show loading state
-            const button = document.getElementById("loginButton");
-            const originalText = button.innerHTML;
-            button.innerHTML =
-                '<span class="flex items-center justify-center space-x-2"><span class="animate-spin">⏳</span><span>Iniciando sesión...</span></span>';
-            button.disabled = true;
-
-             try {
-                    const res = await fetch('http://127.0.0.1:8000/login', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({ email, password })
-                    });
-
-                    if (!res.ok) {
-                        showError('Usuario o contraseña incorrectos');
-                        return
-                    }
-
-                    const data = await res.json();
-                    localStorage.setItem('token', data.access_token);
-                    localStorage.setItem('userName', data.user);
-
-                    showSuccess('¡Bienvenido! Redirigiendo a tu panel...');
-                    setTimeout(() => {
-                         window.location.href = '/dashboard'; // O tu ruta real
-                    }, 1500);
-
-                } catch (err) {
-                    showError(err.message);
-                    document.querySelector('.form-glow').style.animation = 'shake 0.5s ease-in-out';
-                    setTimeout(() => {
-                        document.querySelector('.form-glow').style.animation = '';
-                    }, 500);
-                } finally {
-                    button.innerHTML = originalText;
-                    button.disabled = false;
-                }
-
-            // // Simulate login process
-            // setTimeout(() => {
-            //     // Simulate different login scenarios
-            //     if (
-            //         usuario === "demo@followboost.com" &&
-            //         password === "demo123"
-            //     ) {
-            //         // Successful login
-            //         showSuccess("¡Bienvenido! Redirigiendo a tu panel...");
-            //         setTimeout(() => {
-            //             // window.location.href = 'dashboard.html';
-            //             alert("Redirigiendo al panel de usuario...");
-            //         }, 1500);
-            //     } else {
-            //         // Failed login
-            //         showError("Usuario o contraseña incorrectos");
-            //         // Add shake animation
-            //         document.querySelector(".form-glow").style.animation =
-            //             "shake 0.5s ease-in-out";
-            //         setTimeout(() => {
-            //             document.querySelector(".form-glow").style.animation =
-            //                 "";
-            //         }, 500);
-            //     }
-
-            //     // Reset button
-            //     button.innerHTML = originalText;
-            //     button.disabled = false;
-            // }, 2000);
-        });
-
-    
     // Show error message
     function showError(message) {
         const errorDiv = document.getElementById("errorMessage");
@@ -363,20 +276,6 @@
         errorDiv.querySelector("span").className = "text-green-300 text-xl";
         errorDiv.querySelector("p").className = "text-green-100 text-sm";
         errorDiv.classList.remove("hidden");
-    }
-
-    // Toggle password visibility
-    function togglePassword() {
-        const passwordInput = document.getElementById("password");
-        const toggleIcon = document.getElementById("passwordToggle");
-
-        if (passwordInput.type === "password") {
-            passwordInput.type = "text";
-            toggleIcon.textContent = "🙈";
-        } else {
-            passwordInput.type = "password";
-            toggleIcon.textContent = "👁️";
-        }
     }
 
     // Show forgot password modal
@@ -407,20 +306,6 @@
             closeForgotPassword();
         });
 
-    // Social login
-    function socialLogin(provider) {
-        alert(
-            `Iniciando sesión con ${provider.charAt(0).toUpperCase() + provider.slice(1)}...`,
-        );
-        // Here you would integrate with actual social login providers
-    }
-
-    // Go to signup
-    function goToSignup() {
-        alert("Redirigiendo al formulario de registro...");
-        // window.location.href = 'formulario.html';
-    }
-
     // Input animations
     const inputs = document.querySelectorAll("input");
     inputs.forEach((input) => {
@@ -441,23 +326,4 @@
                 closeForgotPassword();
             }
         });
-
-    // Demo credentials hint
-    setTimeout(() => {
-        const hint = document.createElement("div");
-        hint.className =
-            "fixed bottom-4 right-4 bg-blue-500/90 text-white px-4 py-3 rounded-lg shadow-lg z-50 max-w-xs";
-        hint.innerHTML = `
-                <div class="text-sm">
-                    <strong>💡 Demo:</strong><br>
-                    Usuario: demo@followboost.com<br>
-                    Contraseña: demo123
-                </div>
-            `;
-        document.body.appendChild(hint);
-
-        setTimeout(() => {
-            hint.remove();
-        }, 8000);
-    }, 3000);
 </script>

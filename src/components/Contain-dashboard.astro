@@ -18,36 +18,25 @@
 
 <!-- Header -->
 <header
-    class="relative z-50 bg-black/20 backdrop-blur-lg border-b border-white/10"
->
+    class="relative z-50 bg-black/20 backdrop-blur-lg border-b border-white/10">
     <div class="container mx-auto px-4 sm:px-6 py-4">
         <div class="flex items-center justify-between">
             <!-- Mobile Menu Button -->
             <button
                 id="mobileMenuBtn"
-                class="lg:hidden p-2 text-white hover:bg-white hover:bg-opacity-10 rounded-full transition-colors"
+                class="lg:hidden p-2 text-white hover:bg-white/10 rounded-full transition-colors "
             >
                 <span class="text-2xl">☰</span>
             </button>
 
             <!-- Logo -->
             <div class="text-xl sm:text-2xl font-bold text-white">
-                🚀 <span class="gradient-text">FollowBoost</span>
+                🚀 <span class="gradient-text">WeeklySocial</span>
             </div>
 
             <!-- User Menu -->
             <div class="flex items-center space-x-2 sm:space-x-4">
-                <!-- Notifications -->
-                <button
-                    class="relative p-2 text-white hover:bg-white hover:bg-opacity-10 rounded-full transition-colors"
-                >
-                    <span class="text-xl sm:text-2xl">🔔</span>
-                    <span
-                        class="absolute -top-1 -right-1 w-4 h-4 sm:w-5 sm:h-5 bg-red-500 rounded-full text-xs text-white flex items-center justify-center"
-                        >3</span
-                    >
-                </button>
-
+                
                 <!-- User Profile -->
                 <div class="user-profile flex items-center space-x-2 sm:space-x-3 bg-white/10 rounded-full px-2 sm:px-4 py-2">
                     <div
@@ -55,10 +44,10 @@
                     >
                         U
                     </div>
-                    <span class="hidden sm:block text-white font-medium"
-                        >Usuario Demo</span
+                    <span id="userNameH" class="hidden sm:block text-white font-medium"
+                        ></span
                     >
-                    <button onclick="toggleUserMenu()" class="text-white cursor-pointer">
+                    <button onclick="toggleUserMenu()" class="text-white ">
                         <span class="text-sm sm:text-lg">▼</span>
                     </button>
                 </div>
@@ -82,30 +71,27 @@
         class="fixed lg:relative inset-y-0 left-0 z-50 w-64 bg-black/20 backdrop-blur-lg border-r border-white/10 p-4 sm:p-6 transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out"
     >
         <nav class="space-y-2">
-            <a
-                href="#"
-                class="nav-item active flex items-center space-x-3 px-3 sm:px-4 py-3 rounded-xl text-white text-sm sm:text-base"
+            <button
+                class="nav-item  w-full active flex items-center space-x-3 px-3 sm:px-4 py-3 rounded-xl text-white text-sm sm:text-base"
                 onclick="showSection('dashboard')"
             >
                 <span class="text-lg sm:text-xl">📊</span>
                 <span>Dashboard</span>
-            </a>
-            <a
-                href="#"
-                class="nav-item flex items-center space-x-3 px-3 sm:px-4 py-3 rounded-xl text-white text-sm sm:text-base"
+            </button>
+            <button 
+                class="nav-item  w-full flex items-center space-x-3 px-3 sm:px-4 py-3 rounded-xl text-white text-sm sm:text-base"
                 onclick="showSection('orders')"
             >
                 <span class="text-lg sm:text-xl">📦</span>
                 <span>Mis Pedidos</span>
-            </a>
-            <a
-                href="#"
-                class="nav-item flex items-center space-x-3 px-3 sm:px-4 py-3 rounded-xl text-white text-sm sm:text-base"
-                onclick="showSection('subscription')"
+            </button>
+            <!-- onclick="showSection('subscription')" -->
+            <button
+                class="nav-item  w-full hidden flex items-center space-x-3 px-3 sm:px-4 py-3 rounded-xl text-white text-sm sm:text-base"
             >
                 <span class="text-lg sm:text-xl">💳</span>
                 <span>Suscripción</span>
-            </a>
+            </button>
         </nav>
 
         <!-- Logout Button -->
@@ -114,7 +100,7 @@
         >
             <button
                 onclick="logout()"
-                class="w-full flex items-center space-x-3 px-3 sm:px-4 py-3 rounded-xl text-red-300 hover:bg-red-500 hover:bg-opacity-20 transition-colors text-sm sm:text-base"
+                class="w-full  flex items-center space-x-3 px-3 sm:px-4 py-3 rounded-xl text-red-300 hover:bg-red-500 hover:bg-opacity-20 transition-colors text-sm sm:text-base"
             >
                 <span class="text-lg sm:text-xl">🚪</span>
                 <span>Cerrar Sesión</span>
@@ -131,7 +117,7 @@
                 <h1
                     class="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-2"
                 >
-                    ¡Hola, <span class="gradient-text">Usuario Demo</span>! 👋
+                    ¡Hola, <span id="userName" class="gradient-text"></span>! 👋
                 </h1>
                 <p class="text-lg sm:text-xl text-gray-300">
                     Aquí tienes un resumen de tu actividad y crecimiento
@@ -149,7 +135,7 @@
                     <div class="flex items-center justify-between mb-3 sm:mb-4">
                         <div class="text-2xl sm:text-3xl">👥</div>
                         <div
-                            class="text-green-400 text-xs sm:text-sm font-semibold"
+                            class="text-green-400 text-xs sm:text-sm font-semibold hidden"
                         >
                             +12.5%
                         </div>
@@ -158,7 +144,7 @@
                         class="text-xl sm:text-2xl font-bold text-white mb-1"
                         id="totalFollowers"
                     >
-                        15,847
+                        0
                     </div>
                     <div class="text-gray-400 text-xs sm:text-sm">
                         Total Seguidores
@@ -173,7 +159,7 @@
                     <div class="flex items-center justify-between mb-3 sm:mb-4">
                         <div class="text-2xl sm:text-3xl">❤️</div>
                         <div
-                            class="text-green-400 text-xs sm:text-sm font-semibold"
+                            class="text-green-400 text-xs sm:text-sm font-semibold hidden"
                         >
                             +8.3%
                         </div>
@@ -182,7 +168,7 @@
                         class="text-xl sm:text-2xl font-bold text-white mb-1"
                         id="totalLikes"
                     >
-                        89,234
+                        0
                     </div>
                     <div class="text-gray-400 text-xs sm:text-sm">
                         Total Likes
@@ -197,7 +183,7 @@
                     <div class="flex items-center justify-between mb-3 sm:mb-4">
                         <div class="text-2xl sm:text-3xl">👁️</div>
                         <div
-                            class="text-green-400 text-xs sm:text-sm font-semibold"
+                            class="text-green-400 text-xs sm:text-sm font-semibold hidden"
                         >
                             +15.7%
                         </div>
@@ -206,7 +192,7 @@
                         class="text-xl sm:text-2xl font-bold text-white mb-1"
                         id="totalViews"
                     >
-                        234,567
+                        0
                     </div>
                     <div class="text-gray-400 text-xs sm:text-sm">
                         Total Visualizaciones
@@ -221,16 +207,16 @@
                     <div class="flex items-center justify-between mb-3 sm:mb-4">
                         <div class="text-2xl sm:text-3xl">⚡</div>
                         <div
-                            class="text-blue-400 text-xs sm:text-sm font-semibold"
+                            class="text-blue-400 text-xs sm:text-sm font-semibold hidden"
                         >
                             En proceso
                         </div>
                     </div>
-                    <div class="text-xl sm:text-2xl font-bold text-white mb-1">
-                        2
+                    <div id="totalOrder" class="text-xl sm:text-2xl font-bold text-white mb-1">
+                        0
                     </div>
                     <div class="text-gray-400 text-xs sm:text-sm">
-                        Pedidos Activos
+                        Pedidos realizados
                     </div>
                 </div>
             </div>
@@ -247,69 +233,8 @@
                         <span class="text-2xl mr-3">📋</span>
                         Actividad Reciente
                     </h3>
-                    <div class="space-y-4">
-                        <div
-                            class="flex items-center space-x-4 p-3 bg-green-500/20 rounded-xl"
-                        >
-                            <div
-                                class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center text-white"
-                            >
-                                ✓
-                            </div>
-                            <div class="flex-1">
-                                <div class="text-white font-medium">
-                                    Pedido completado
-                                </div>
-                                <div class="text-green-300 text-sm">
-                                    +500 seguidores en Instagram
-                                </div>
-                                <div class="text-gray-400 text-xs">
-                                    Hace 2 horas
-                                </div>
-                            </div>
-                        </div>
-
-                        <div
-                            class="flex items-center space-x-4 p-3 bg-blue-500/20 rounded-xl"
-                        >
-                            <div
-                                class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center text-white animate-pulse"
-                            >
-                                ⚡
-                            </div>
-                            <div class="flex-1">
-                                <div class="text-white font-medium">
-                                    Pedido en proceso
-                                </div>
-                                <div class="text-blue-300 text-sm">
-                                    +500 likes en TikTok
-                                </div>
-                                <div class="text-gray-400 text-xs">
-                                    Iniciado hace 30 min
-                                </div>
-                            </div>
-                        </div>
-
-                        <div
-                            class="flex items-center space-x-4 p-3 bg-purple-500/20 rounded-xl"
-                        >
-                            <div
-                                class="w-10 h-10 bg-purple-500 rounded-full flex items-center justify-center text-white"
-                            >
-                                💳
-                            </div>
-                            <div class="flex-1">
-                                <div class="text-white font-medium">
-                                    Pago procesado
-                                </div>
-                                <div class="text-purple-300 text-sm">
-                                    Suscripción mensual renovada
-                                </div>
-                                <div class="text-gray-400 text-xs">
-                                    Hace 1 día
-                                </div>
-                            </div>
-                        </div>
+                    <div class="space-y-4" id="recentActivity">
+                        <!-- Aquí se insertarán las actividades recientes -->
                     </div>
                 </div>
 
@@ -322,9 +247,8 @@
                         Acciones Rápidas
                     </h3>
                     <div class="grid grid-cols-2 gap-3 sm:gap-4">
-                        <button
-                            onclick="newOrder()"
-                            class="card-hover cursor-pointer bg-gradient-to-r from-pink-500 to-purple-500/50 border border-pink-400/30 rounded-xl p-3 sm:p-4 text-center"
+                        <button id="btnNewOrderDashboard"
+                            class="card-hover  bg-gradient-to-r from-pink-500 to-purple-500/50 border border-pink-400/30 rounded-xl p-3 sm:p-4 text-center"
                         >
                             <div class="text-2xl sm:text-3xl mb-1 sm:mb-2">
                                 ➕
@@ -337,8 +261,8 @@
                         </button>
 
                         <button
-                            onclick="viewAnalytics()"
-                            class="card-hover cursor-pointer bg-gradient-to-r from-amber-600 to-amber-500/50 border border-blue-400/30 rounded-xl p-3 sm:p-4 text-center"
+                            onclick="showSection('orders')"
+                            class="card-hover  bg-gradient-to-r from-amber-600 to-amber-500/50 border border-blue-400/30 rounded-xl p-3 sm:p-4 text-center"
                         >
                             <div class="text-2xl sm:text-3xl mb-1 sm:mb-2">
                                 📦
@@ -350,9 +274,8 @@
                             </div>
                         </button>
 
-                        <button
-                            onclick="manageSubscription()"
-                            class="card-hover cursor-pointer bg-gradient-to-r from-green-500 to-teal-500/50 border border-green-400/30 rounded-xl p-3 sm:p-4 text-center"
+                        <button 
+                            class="card-hover hidden  bg-gradient-to-r from-green-500 to-teal-500/50 border border-green-400/30 rounded-xl p-3 sm:p-4 text-center"
                         >
                             <div class="text-2xl sm:text-3xl mb-1 sm:mb-2">
                                 💳
@@ -365,8 +288,8 @@
                         </button>
 
                         <button
-                            onclick="contactSupport()"
-                            class="card-hover cursor-pointer bg-gradient-to-r from-red-600 to-red-400/50 border border-yellow-400/30 rounded-xl p-3 sm:p-4 text-center"
+                            onclick="logout()"
+                            class="card-hover  bg-gradient-to-r from-red-600 to-red-400/50 border border-yellow-400/30 rounded-xl p-3 sm:p-4 text-center"
                         >
                             <div class="text-2xl sm:text-3xl mb-1 sm:mb-2">
                                 🚪
@@ -380,78 +303,10 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Growth Chart -->
-            <div class="stat-card rounded-2xl p-6 mb-8">
-                <h3 class="text-xl font-bold text-white mb-6 flex items-center">
-                    <span class="text-2xl mr-3">📈</span>
-                    Crecimiento de Seguidores (Últimos 7 días)
-                </h3>
-                <div
-                    class="h-48 sm:h-64 flex items-end justify-between space-x-1 sm:space-x-2 px-2"
-                >
-                    <div class="flex flex-col items-center">
-                        <div
-                            class="w-6 sm:w-8 bg-gradient-to-t from-pink-500 to-purple-500 rounded-t mb-2"
-                            style="height: 40px; sm:height: 60px;"
-                        >
-                        </div>
-                        <span class="text-gray-400 text-xs">Lun</span>
-                    </div>
-                    <div class="flex flex-col items-center">
-                        <div
-                            class="w-6 sm:w-8 bg-gradient-to-t from-pink-500 to-purple-500 rounded-t mb-2"
-                            style="height: 53.333333333333336px; sm:height: 80px;"
-                        >
-                        </div>
-                        <span class="text-gray-400 text-xs">Mar</span>
-                    </div>
-                    <div class="flex flex-col items-center">
-                        <div
-                            class="w-6 sm:w-8 bg-gradient-to-t from-pink-500 to-purple-500 rounded-t mb-2"
-                            style="height: 80px; sm:height: 120px;"
-                        >
-                        </div>
-                        <span class="text-gray-400 text-xs">Mié</span>
-                    </div>
-                    <div class="flex flex-col items-center">
-                        <div
-                            class="w-6 sm:w-8 bg-gradient-to-t from-pink-500 to-purple-500 rounded-t mb-2"
-                            style="height: 66.66666666666667px; sm:height: 100px;"
-                        >
-                        </div>
-                        <span class="text-gray-400 text-xs">Jue</span>
-                    </div>
-                    <div class="flex flex-col items-center">
-                        <div
-                            class="w-6 sm:w-8 bg-gradient-to-t from-pink-500 to-purple-500 rounded-t mb-2"
-                            style="height: 100px; sm:height: 150px;"
-                        >
-                        </div>
-                        <span class="text-gray-400 text-xs">Vie</span>
-                    </div>
-                    <div class="flex flex-col items-center">
-                        <div
-                            class="w-6 sm:w-8 bg-gradient-to-t from-pink-500 to-purple-500 rounded-t mb-2"
-                            style="height: 60px; sm:height: 90px;"
-                        >
-                        </div>
-                        <span class="text-gray-400 text-xs">Sáb</span>
-                    </div>
-                    <div class="flex flex-col items-center">
-                        <div
-                            class="w-6 sm:w-8 bg-gradient-to-t from-pink-500 to-purple-500 rounded-t mb-2"
-                            style="height: 73.33333333333333px; sm:height: 110px;"
-                        >
-                        </div>
-                        <span class="text-gray-400 text-xs">Dom</span>
-                    </div>
-                </div>
-            </div>
         </div>
 
         <!-- Orders Section -->
-        <div id="orders-section" class="section hidden">
+        <div id="orders-section" class="section">
             <div class="mb-8">
                 <h1 class="text-4xl font-bold text-white mb-2">
                     Mis <span class="gradient-text">Pedidos</span>
@@ -463,6 +318,11 @@
 
             <!-- Orders Table -->
             <div class="stat-card rounded-2xl p-6">
+                <div id="btnOrder" class="flex justify-end mb-4">
+                    <button id="btnNewOrder" class="px-4 py-2 bg-gradient-to-r from-pink-500 to-purple-500 text-white font-semibold rounded-lg hover:scale-105 transform transition-all duration-300 ">
+                      Enviar nueva orden
+                    </button>
+                </div>
                 <div class="overflow-x-auto">
                     <table class="w-full">
                         <thead>
@@ -487,70 +347,10 @@
                                     class="text-left text-white font-semibold py-4"
                                     >Estado</th
                                 >
-                                <th
-                                    class="text-left text-white font-semibold py-4"
-                                    >Acciones</th
-                                >
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="border-b border-white/10">
-                                <td class="py-4 text-gray-300">2024-01-15</td>
-                                <td class="py-4 text-white">Seguidores</td>
-                                <td class="py-4 text-white">📸 Instagram</td>
-                                <td class="py-4 text-white">500</td>
-                                <td class="py-4">
-                                    <span
-                                        class="px-3 py-1 bg-green-500/20 text-green-300 rounded-full text-sm"
-                                    >
-                                        ✅ Completado
-                                    </span>
-                                </td>
-                                <td class="py-4">
-                                    <button
-                                        class="text-blue-300 hover:text-blue-200"
-                                        >Ver detalles</button
-                                    >
-                                </td>
-                            </tr>
-                            <tr class="border-b border-white/10">
-                                <td class="py-4 text-gray-300">2024-01-14</td>
-                                <td class="py-4 text-white">Likes</td>
-                                <td class="py-4 text-white">🎵 TikTok</td>
-                                <td class="py-4 text-white">500</td>
-                                <td class="py-4">
-                                    <span
-                                        class="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-sm animate-pulse"
-                                    >
-                                        ⚡ En proceso
-                                    </span>
-                                </td>
-                                <td class="py-4">
-                                    <button
-                                        class="text-blue-300 hover:text-blue-200"
-                                        >Ver progreso</button
-                                    >
-                                </td>
-                            </tr>
-                            <tr class="border-b border-white/10">
-                                <td class="py-4 text-gray-300">2024-01-12</td>
-                                <td class="py-4 text-white">Visualizaciones</td>
-                                <td class="py-4 text-white">👥 Facebook</td>
-                                <td class="py-4 text-white">2,500</td>
-                                <td class="py-4">
-                                    <span
-                                        class="px-3 py-1 bg-green-500/20 text-green-300 rounded-full text-sm"
-                                    >
-                                        ✅ Completado
-                                    </span>
-                                </td>
-                                <td class="py-4">
-                                    <button
-                                        class="text-blue-300 hover:text-blue-200"
-                                        >Ver detalles</button
-                                    >
-                                </td>
-                            </tr>
+                            <!-- Ordenes a renderizar -->
                         </tbody>
                     </table>
                 </div>
@@ -636,8 +436,7 @@
                             >
                                 Actualizar método de pago
                             </button>
-                            <button
-                                onclick="cancelSubscription()"
+                            <button 
                                 class="w-full px-4 py-3 bg-red-500/20 text-red-300 font-semibold rounded-xl hover:bg-opacity-30 transition-colors"
                             >
                                 Cancelar suscripción
@@ -702,8 +501,7 @@
     class="hidden fixed top-16 right-6 bg-black/50 backdrop-blur-lg rounded-2xl p-4 z-50 border border-white/20"
 >
     <div class="space-y-2">
-        <a
-            href="#"
+        <button
             onclick="logout()"
             class="block px-4 py-2 text-red-300 hover:bg-red-500 hover:bg-opacity-20 rounded-xl transition-colors"
         >
@@ -712,7 +510,285 @@
     </div>
 </div>
 
+<div
+    id="AlertModal"
+    class="fixed hidden inset-0 bg-black/50 flex items-center justify-center p-4 z-50" >
+    <div class="bg-white/10 backdrop-blur-lg rounded-3xl p-8 max-w-md w-full border border-white/20 flex flex-col justify-center">
+        <div class="text-center mb-6">
+            <div id="modalIcon" class="text-4xl mb-4">🚨</div>
+            <h2 id="modalTitle" class="text-2xl font-bold text-white mb-2">
+                Recuperar Contraseña
+            </h2>
+            <p  id="modalMessage" class="text-gray-300">
+                Te enviaremos un enlace para restablecer tu contraseña
+            </p>
+        </div>
+        <button id="modalCloseBtn" class="flex-1  px-4 py-3 bg-gradient-to-r from-pink-500 to-purple-500 text-white rounded-xl hover:scale-105 transform transition-all duration-300">
+            Vale
+        </button>
+    </div>
+</div>
+
+<div
+    id="loaderModal"
+    class="hidden opacity-0 fixed inset-0 z-[70] flex items-center justify-center bg-black/70 backdrop-blur-sm transition-opacity duration-200"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="loaderTitle"
+  >
+    <div class="mx-4 w-full max-w-sm rounded-2xl border border-white/20 bg-white/10 p-6 text-center shadow-xl">
+      <div class="mx-auto mb-4 h-12 w-12 rounded-full border-4 border-pink-400/40 border-t-transparent animate-spin"></div>
+      <h2 id="loaderTitle" class="text-white text-lg font-semibold mb-1">Procesando</h2>
+      <p data-loader-text class="text-gray-200 text-sm">Por favor, espera un momento...</p>
+    </div>
+  </div>
+
+<script type="module" src="/src/scripts/dashboard.js"></script>
 <!-- JavaScript -->
+<script is:inline>
+    // ---------------- FUNCIONES ----------------
+    function redirectToLogin() {
+        window.location.href = "/login";
+        localStorage.clear();
+    }
+
+    
+    function calculateTotals(data) {
+        const totals = { followers: 0, likes: 0, views: 0, orders:0};
+
+        if (!Array.isArray(data)) return totals; // seguridad
+
+        data.forEach(order => {
+            if (!order || typeof order.quantity !== "number") return; // seguridad
+            switch (order.service) {
+            case "followers":
+                totals.followers += order.quantity;
+                break;
+            case "likes":
+                totals.likes += order.quantity;
+                break;
+            case "views":
+                totals.views += order.quantity;
+                break;
+            }
+        });
+
+        totals.orders = data.length;
+
+        return totals;
+    }
+
+    function animateNumbers(totals) {
+        if (!totals) return; // seguridad extra
+
+        const followers = document.getElementById("totalFollowers");
+        const likes = document.getElementById("totalLikes");
+        const views = document.getElementById("totalViews");
+        const orders = document.getElementById("totalOrder");
+
+        animateValue(followers, 0, totals.followers || 0, 2000);
+        animateValue(likes, 0, totals.likes || 0, 2000);
+        animateValue(views, 0, totals.views || 0, 2000);
+        animateValue(orders, 0, totals.orders || 0, 2000);
+    }
+
+    function animateValue(element, start, end, duration) {
+        if (!element) return; // seguridad extra
+        let startTimestamp = null;
+        const step = (timestamp) => {
+            if (!startTimestamp) startTimestamp = timestamp;
+            const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+            const value = Math.floor(progress * (end - start) + start);
+            element.textContent = value.toLocaleString();
+            if (progress < 1) {
+            window.requestAnimationFrame(step);
+            }
+        };
+        window.requestAnimationFrame(step);
+    }
+
+    function renderRecentActivity(data) {
+        const container = document.getElementById("recentActivity");
+        if (!container) return;
+
+        // Ordenar por fecha (más reciente primero)
+        const sorted = [...data].sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+
+        // Tomar solo los 3 más recientes
+        const recent = sorted.slice(0, 3);
+
+        // Limpiar contenedor
+        container.innerHTML = "";
+
+        // Agregar elementos
+        recent.forEach(order => {
+            const { quantity, social, service, created_at } = order;
+            const timeAgo = getTimeAgo(created_at);
+            const color = getServiceColor(service);
+            const icon = getServiceIcon(service);
+
+            container.innerHTML += `
+            <div class="flex items-center space-x-4 p-3 ${color.bg} rounded-xl">
+                <div class="w-10 h-10 ${color.circle} rounded-full flex items-center justify-center text-white">
+                ${icon}
+                </div>
+                <div class="flex-1">
+                <div class="text-white font-medium">
+                    Pedido completado
+                </div>
+                <div class="${color.text} text-sm">
+                    +${quantity} ${service} en ${capitalize(social)}
+                </div>
+                <div class="text-gray-400 text-xs">
+                    ${timeAgo}
+                </div>
+                </div>
+            </div>
+            `;
+        });
+    }
+
+    function renderOrdersTable(data) {
+        const tbody = document.querySelector("#orders-section table tbody");
+        const btnOrder = document.getElementById("btnOrder");
+
+        //si hay mas de 3 registros ocultar boton
+        if(data.length > 3){
+            btnOrder.classList.add("hidden");
+        }
+
+        tbody.innerHTML = ""; // Limpiar contenido actual
+
+        data.forEach(order => {
+            const tr = document.createElement("tr");
+            tr.className = "border-b border-white/10";
+
+            tr.innerHTML = `
+                <td class="py-4 text-gray-300">${formatDate(order.created_at)}</td>
+                <td class="py-4 text-white">${getServiceName(order.service)}</td>
+                <td class="py-4 text-white">${getSocialIcon(order.social)} ${order.social}</td>
+                <td class="py-4 text-white">${order.quantity.toLocaleString()}</td>
+                <td class="py-4">
+                    <span class="px-3 py-2 bg-green-500/20 text-green-300 rounded-full text-sm">
+                        ✅ Exitoso
+                    </span>
+                </td>
+            `;
+
+            tbody.appendChild(tr);
+        });
+    }
+
+    // ---------------- Helpers ----------------
+
+    function showLoader(message = 'Procesando...') {
+        const modal = document.getElementById('loaderModal');
+        const label = modal.querySelector('[data-loader-text]');
+        if (label) label.textContent = message;
+
+        modal.classList.remove('hidden');
+        requestAnimationFrame(() => {
+        modal.classList.remove('opacity-0');
+        });
+
+        // Bloquea el scroll de fondo
+        document.body.classList.add('overflow-hidden');
+    }
+
+    function hideLoader() {
+        const modal = document.getElementById('loaderModal');
+        modal.classList.add('opacity-0');
+        setTimeout(() => {
+        modal.classList.add('hidden');
+        document.body.classList.remove('overflow-hidden');
+        }, 200); // sincronizado con transition-opacity
+    }
+
+    function showModal({ icon = "🚨", title = "Alerta", message = "" }) {
+        const modal = document.getElementById("AlertModal");
+        const iconEl = document.getElementById("modalIcon");
+        const titleEl = document.getElementById("modalTitle");
+        const messageEl = document.getElementById("modalMessage");
+
+        iconEl.textContent = icon;
+        titleEl.textContent = title;
+        messageEl.textContent = message;
+
+        modal.classList.remove("hidden");
+
+        // Cerrar modal al hacer clic en botón
+        document.getElementById("modalCloseBtn").onclick = () => {
+            modal.classList.add("hidden");
+        };
+    }
+
+    function getTimeAgo(dateString) {
+        const now = new Date();
+        const updated = new Date(dateString);
+        const diffMs = now - updated;
+        const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
+
+        if (diffHours < 24) {
+            return `Hace ${diffHours} hora${diffHours !== 1 ? 's' : ''}`;
+        } else {
+            const diffDays = Math.floor(diffHours / 24);
+            return `Hace ${diffDays} día${diffDays !== 1 ? 's' : ''}`;
+        }
+    }
+
+    function getServiceColor(service) {
+        switch (service) {
+            case "followers":
+            return { bg: "bg-green-500/20", circle: "bg-green-500", text: "text-green-300" };
+            case "likes":
+            return { bg: "bg-pink-500/20", circle: "bg-pink-500", text: "text-pink-300" };
+            case "views":
+            return { bg: "bg-blue-500/20", circle: "bg-blue-500", text: "text-blue-300" };
+            default:
+            return { bg: "bg-gray-500/20", circle: "bg-gray-500", text: "text-gray-300" };
+        }
+    }
+
+    function getServiceIcon(service) {
+        switch (service) {
+            case "followers": return "👥";
+            case "likes": return "❤️";
+            case "views": return "👁️";
+            default: return "📦";
+        }
+    }
+
+    function getServiceName(service) {
+        switch (service) {
+            case "followers": return "👥Seguidores";
+            case "likes": return "❤️ Likes";
+            case "views": return "👁️ Visualizaciones";
+            default: return "📦";
+        }
+    }
+
+    function capitalize(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+    }
+
+    // Formatear fecha a YYYY-MM-DD
+    function formatDate(dateString) {
+        const date = new Date(dateString);
+        return date.toISOString().split("T")[0];
+    }
+
+    // Iconos según red social
+    function getSocialIcon(social) {
+        const icons = {
+            "instagram": "📸",
+            "tiktok": "🎵",
+            "facebook": "👤"
+        };
+        return icons[social] || "🌐";
+    }
+
+</script>
+
 <script is:inline>
     // Navigation
     function showSection(sectionName) {
@@ -749,12 +825,6 @@
         }
     });
 
-    // Quick actions
-    function newOrder() {
-        alert("Redirigiendo al formulario de nuevo pedido...");
-        // window.location.href = 'formulario.html';
-    }
-
     function viewAnalytics() {
         showSection("analytics");
     }
@@ -763,58 +833,12 @@
         showSection("subscription");
     }
 
-    function contactSupport() {
-        alert("Abriendo chat de soporte...");
-    }
-
-    function cancelSubscription() {
-        if (
-            confirm(
-                "¿Estás seguro de que quieres cancelar tu suscripción? Perderás acceso a todas las funciones premium.",
-            )
-        ) {
-            alert(
-                "Suscripción cancelada. Seguirás teniendo acceso hasta el final del período actual.",
-            );
-        }
-    }
 
     function logout() {
-        if (confirm("¿Estás seguro de que quieres cerrar sesión?")) {
-            alert("Cerrando sesión...");
-            // window.location.href = 'login.html';
-        }
+        localStorage.clear();
+        window.location.href ='/'
     }
 
-    // Animate numbers on load
-    function animateNumbers() {
-        const followers = document.getElementById("totalFollowers");
-        const likes = document.getElementById("totalLikes");
-        const views = document.getElementById("totalViews");
-
-        animateValue(followers, 0, 15847, 2000);
-        animateValue(likes, 0, 89234, 2000);
-        animateValue(views, 0, 234567, 2000);
-    }
-
-    function animateValue(element, start, end, duration) {
-        let startTimestamp = null;
-        const step = (timestamp) => {
-            if (!startTimestamp) startTimestamp = timestamp;
-            const progress = Math.min(
-                (timestamp - startTimestamp) / duration,
-                1,
-            );
-            const value = Math.floor(progress * (end - start) + start);
-            element.textContent = value.toLocaleString();
-            if (progress < 1) {
-                window.requestAnimationFrame(step);
-            }
-        };
-        window.requestAnimationFrame(step);
-    }
-
-    // Initialize dashboard
     document.addEventListener("DOMContentLoaded", function () {
         setTimeout(animateNumbers, 500);
 
@@ -825,22 +849,6 @@
             card.classList.add("animate-slide-up");
         });
     });
-
-    // Simulate real-time updates
-    setInterval(() => {
-        // Update notification count randomly
-        const notificationBadge = document.querySelector(
-            ".absolute.-top-1.-right-1",
-        );
-        const currentCount = parseInt(notificationBadge.textContent);
-        if (Math.random() > 0.8) {
-            notificationBadge.textContent = currentCount + 1;
-            notificationBadge.classList.add("animate-bounce-gentle");
-            setTimeout(() => {
-                notificationBadge.classList.remove("animate-bounce-gentle");
-            }, 2000);
-        }
-    }, 10000);
 
     // Mobile menu functionality
     const mobileMenuBtn = document.getElementById("mobileMenuBtn");
@@ -874,4 +882,5 @@
             mobileOverlay.classList.add("hidden");
         }
     });
+
 </script>

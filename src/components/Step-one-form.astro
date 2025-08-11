@@ -17,8 +17,8 @@
 <div class="relative z-10 w-full max-w-md mx-auto animate-fade-in">
     <!-- Logo/Brand -->
     <div class="text-center mb-8">
-        <a href="/" class="text-3xl font-bold text-white mb-2 cursor-pointer">
-            🚀 <span class="gradient-text2">FollowBoost</span>
+        <a href="/" class="text-3xl font-bold text-white mb-2 ">
+            🚀 <span class="gradient-text2">WeeklySocial</span>
         </a>
     </div>
 
@@ -228,7 +228,7 @@
                 </div>
             </div>
 
-            <p id="message" class="text-center text-sm mt-2"></p>
+            <p id="message1" class="text-center text-sm mt-2"></p>
 
             <!-- Privacy Message -->
             <div
@@ -246,7 +246,7 @@
             <!-- Submit Button -->
             <button
                 type="submit"
-                class="transition-all cursor-pointer duration-300 hover:-translate-y-0.5 hover:shadow-[0_15px_35px_rgba(236,72,153,0.4)] bg-pink-500 w-full bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 text-white font-bold text-xl py-5 px-8 rounded-2xl focus:outline-none focus:ring-4 focus:ring-pink-300/50 animate-pulse-slow"
+                class="transition-all  duration-300 hover:-translate-y-0.5 hover:shadow-[0_15px_35px_rgba(236,72,153,0.4)] bg-pink-500 w-full bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 text-white font-bold text-xl py-5 px-8 rounded-2xl focus:outline-none focus:ring-4 focus:ring-pink-300/50 animate-pulse-slow"
             >
                 <span class="flex items-center justify-center space-x-3">
                     <span>🚀 Continuar y validar tarjeta</span>
@@ -299,6 +299,8 @@
 </div>
 
 <script is:inline>
+
+
     // Form submission handler
     document.getElementById("leadForm").addEventListener("submit", function (e) {
             e.preventDefault();
@@ -351,7 +353,7 @@
                     break;
             }
 
-            const messageErr = document.getElementById('message');
+            const messageErr = document.getElementById('message1');
 
             if (!validUrl) {
                 messageErr.textContent = `Por favor ingresa una URL válida de ${redSocial.charAt(0).toUpperCase() + redSocial.slice(1)}`;
@@ -406,6 +408,29 @@
             this.parentElement.style.transform = "scale(1)";
         });
     });
+
+
+    const selectAction = document.getElementById("accion");
+    const labelUrl = document.getElementById("urlLabel");
+
+    function actualizarLabel() {
+        const accion = selectAction.value;
+        if (accion === 'followers') {
+            labelUrl.innerText = 'URL de tu perfil';
+        } else if(accion === 'likes' ||accion === 'views') {
+            labelUrl.innerText = 'URL de tu publicación';
+        }else{
+            labelUrl.innerText = 'URL';
+        }
+    }
+
+    // Cambiar texto al cargar la página
+    actualizarLabel();
+
+    // Cambiar texto cada vez que el usuario seleccione algo distinto
+    selectAction.addEventListener('change', actualizarLabel);
+
+
 
     // Add floating animation to form on load
     window.addEventListener("load", function () {
